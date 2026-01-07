@@ -35,7 +35,8 @@ source ~/.zshrc  # or ~/.bashrc
 
 **All Platforms:**
 ```bash
-ccg              # Claude Code with GLM-4.6 (latest)
+ccg              # Claude Code with GLM-4.7 (latest)
+ccg46            # Claude Code with GLM-4.6
 ccg45            # Claude Code with GLM-4.5
 ccf              # Claude Code with GLM-4.5-Air (faster)
 cc               # Regular Claude Code
@@ -69,7 +70,7 @@ iwr -useb https://raw.githubusercontent.com/JoeInnsp23/claude-glm-wrapper/main/i
 ## Features
 
 - 🚀 **Easy switching** between GLM and Claude models
-- ⚡ **Multiple GLM models**: GLM-4.6 (latest), GLM-4.5, and GLM-4.5-Air (fast)
+- ⚡ **Multiple GLM models**: GLM-4.7 (latest), GLM-4.6, GLM-4.5, and GLM-4.5-Air (fast)
 - 🔒 **No sudo/admin required**: Installs to user's home directory
 - 🖥️ **Cross-platform**: Works on Windows, macOS, and Linux
 - 📁 **Isolated configs**: Each model uses its own config directory — no conflicts!
@@ -164,8 +165,9 @@ The installer creates these commands and aliases:
 | Alias | Full Command | What It Does | When to Use |
 |-------|--------------|--------------|-------------|
 | `cc` | `claude` | Regular Claude Code | Default - your normal Claude setup |
-| `ccg` | `claude-glm` | GLM-4.6 (latest) | Best quality GLM model |
-| `ccg45` | `claude-glm-4.5` | GLM-4.5 | Previous version of GLM |
+| `ccg` | `claude-glm` | GLM-4.7 (latest) | Best quality GLM model |
+| `ccg46` | `claude-glm-4.6` | GLM-4.6 | Previous version of GLM |
+| `ccg45` | `claude-glm-4.5` | GLM-4.5 | Older version of GLM |
 | `ccf` | `claude-glm-fast` | GLM-4.5-Air (fast) | Quicker responses, lower cost |
 | `ccx` | `ccx` | Multi-provider proxy | Switch between providers in-session |
 
@@ -177,7 +179,7 @@ The `ccx` command starts a local proxy that lets you switch between multiple AI 
 - **OpenAI**: GPT-4o, GPT-4o-mini, and more
 - **OpenRouter**: Access to hundreds of models
 - **Google Gemini**: Gemini 1.5 Pro and Flash
-- **Z.AI GLM**: GLM-4.6, GLM-4.5, GLM-4.5-Air
+- **Z.AI GLM**: GLM-4.7, GLM-4.6, GLM-4.5, GLM-4.5-Air
 - **Anthropic**: Claude 3.5 Sonnet, etc.
 
 Switch models mid-session using `/model <provider>:<model-name>`. Perfect for comparing responses or using the right model for each task!
@@ -194,6 +196,12 @@ Each command starts a **separate Claude Code session** with different configurat
 **Start a coding session with the latest GLM:**
 ```bash
 ccg
+# Opens Claude Code using GLM-4.7
+```
+
+**Use GLM-4.6:**
+```bash
+ccg46
 # Opens Claude Code using GLM-4.6
 ```
 
@@ -226,7 +234,7 @@ ccf "quick question about Python"
 
 ### Workflow 1: Testing with GLM, Production with Claude
 ```bash
-# Develop and test with cost-effective GLM-4.6
+# Develop and test with cost-effective GLM-4.7
 ccg
 # ... work on your code ...
 # exit
@@ -241,7 +249,7 @@ cc
 # Quick syntax questions
 ccf "how do I use async/await in Python?"
 
-# Complex refactoring with latest GLM
+# Complex refactoring with latest GLM-4.7
 ccg
 # ... longer coding session ...
 ```
@@ -320,6 +328,7 @@ Use Claude Code's built-in `/model` command with provider prefixes:
 /model openrouter:meta-llama/llama-3.1-70b-instruct
 /model gemini:gemini-1.5-pro
 /model gemini:gemini-1.5-flash
+/model glm:glm-4.7
 /model glm:glm-4.6
 /model glm:glm-4.5
 /model anthropic:claude-3-5-sonnet-20241022
@@ -388,7 +397,8 @@ Each wrapper uses its own configuration directory to prevent conflicts:
 **macOS / Linux:**
 | Command | Config Directory | Purpose |
 |---------|-----------------|---------|
-| `claude-glm` | `~/.claude-glm/` | GLM-4.6 settings and history |
+| `claude-glm` | `~/.claude-glm/` | GLM-4.7 settings and history |
+| `claude-glm-4.6` | `~/.claude-glm-46/` | GLM-4.6 settings and history |
 | `claude-glm-4.5` | `~/.claude-glm-45/` | GLM-4.5 settings and history |
 | `claude-glm-fast` | `~/.claude-glm-fast/` | GLM-4.5-Air settings and history |
 | `claude` | `~/.claude/` (default) | Your original Claude setup |
@@ -396,7 +406,8 @@ Each wrapper uses its own configuration directory to prevent conflicts:
 **Windows:**
 | Command | Config Directory | Purpose |
 |---------|-----------------|---------|
-| `claude-glm` | `%USERPROFILE%\.claude-glm\` | GLM-4.6 settings and history |
+| `claude-glm` | `%USERPROFILE%\.claude-glm\` | GLM-4.7 settings and history |
+| `claude-glm-4.6` | `%USERPROFILE%\.claude-glm-46\` | GLM-4.6 settings and history |
 | `claude-glm-4.5` | `%USERPROFILE%\.claude-glm-45\` | GLM-4.5 settings and history |
 | `claude-glm-fast` | `%USERPROFILE%\.claude-glm-fast\` | GLM-4.5-Air settings and history |
 | `claude` | `%USERPROFILE%\.claude\` (default) | Your original Claude setup |
@@ -409,12 +420,14 @@ Each wrapper uses its own configuration directory to prevent conflicts:
 ### Wrapper Scripts Location
 
 **macOS / Linux:** `~/.local/bin/`
-- `claude-glm` (GLM-4.6)
+- `claude-glm` (GLM-4.7)
+- `claude-glm-4.6` (GLM-4.6)
 - `claude-glm-4.5` (GLM-4.5)
 - `claude-glm-fast` (GLM-4.5-Air)
 
 **Windows:** `%USERPROFILE%\.local\bin\`
-- `claude-glm.ps1` (GLM-4.6)
+- `claude-glm.ps1` (GLM-4.7)
+- `claude-glm-4.6.ps1` (GLM-4.6)
 - `claude-glm-4.5.ps1` (GLM-4.5)
 - `claude-glm-fast.ps1` (GLM-4.5-Air)
 
@@ -433,6 +446,7 @@ cd claude-glm-wrapper && bash install.sh
 **Option 2: Edit Manually**
 ```bash
 nano ~/.local/bin/claude-glm
+nano ~/.local/bin/claude-glm-4.6
 nano ~/.local/bin/claude-glm-4.5
 nano ~/.local/bin/claude-glm-fast
 # Find and replace ANTHROPIC_AUTH_TOKEN value
@@ -450,6 +464,7 @@ cd claude-glm-wrapper
 **Option 2: Edit Manually**
 ```powershell
 notepad "$env:USERPROFILE\.local\bin\claude-glm.ps1"
+notepad "$env:USERPROFILE\.local\bin\claude-glm-4.6.ps1"
 notepad "$env:USERPROFILE\.local\bin\claude-glm-4.5.ps1"
 notepad "$env:USERPROFILE\.local\bin\claude-glm-fast.ps1"
 # Find and replace $ZaiApiKey value
@@ -572,6 +587,7 @@ Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 **Remove wrapper scripts:**
 ```bash
 rm ~/.local/bin/claude-glm
+rm ~/.local/bin/claude-glm-4.6
 rm ~/.local/bin/claude-glm-4.5
 rm ~/.local/bin/claude-glm-fast
 ```
@@ -579,6 +595,7 @@ rm ~/.local/bin/claude-glm-fast
 **Remove config directories** (optional - deletes chat history):
 ```bash
 rm -rf ~/.claude-glm
+rm -rf ~/.claude-glm-46
 rm -rf ~/.claude-glm-45
 rm -rf ~/.claude-glm-fast
 ```
@@ -589,6 +606,7 @@ rm -rf ~/.claude-glm-fast
 # Claude Code Model Switcher Aliases
 alias cc='claude'
 alias ccg='claude-glm'
+alias ccg46='claude-glm-4.6'
 alias ccg45='claude-glm-4.5'
 alias ccf='claude-glm-fast'
 ```
@@ -600,6 +618,7 @@ Then run: `source ~/.zshrc`
 **Remove wrapper scripts:**
 ```powershell
 Remove-Item "$env:USERPROFILE\.local\bin\claude-glm.ps1"
+Remove-Item "$env:USERPROFILE\.local\bin\claude-glm-4.6.ps1"
 Remove-Item "$env:USERPROFILE\.local\bin\claude-glm-4.5.ps1"
 Remove-Item "$env:USERPROFILE\.local\bin\claude-glm-fast.ps1"
 ```
@@ -607,6 +626,7 @@ Remove-Item "$env:USERPROFILE\.local\bin\claude-glm-fast.ps1"
 **Remove config directories** (optional - deletes chat history):
 ```powershell
 Remove-Item -Recurse "$env:USERPROFILE\.claude-glm"
+Remove-Item -Recurse "$env:USERPROFILE\.claude-glm-46"
 Remove-Item -Recurse "$env:USERPROFILE\.claude-glm-45"
 Remove-Item -Recurse "$env:USERPROFILE\.claude-glm-fast"
 ```
@@ -618,6 +638,7 @@ notepad $PROFILE
 # Claude Code Model Switcher Aliases
 Set-Alias cc claude
 Set-Alias ccg claude-glm
+Set-Alias ccg46 claude-glm-4.6
 Set-Alias ccg45 claude-glm-4.5
 Set-Alias ccf claude-glm-fast
 ```
@@ -640,8 +661,9 @@ Then reload: `. $PROFILE`
 ### Q: Which model should I use?
 **A**:
 - Use **`ccx`** for: Maximum flexibility, model comparison, leveraging different model strengths
-- Use **`ccg` (GLM-4.6)** for: Latest model, complex coding, refactoring, detailed explanations
-- Use **`ccg45` (GLM-4.5)** for: Previous version, if you need consistency with older projects
+- Use **`ccg` (GLM-4.7)** for: Latest model, complex coding, refactoring, detailed explanations
+- Use **`ccg46` (GLM-4.6)** for: Previous version, if you need consistency with older projects
+- Use **`ccg45` (GLM-4.5)** for: Older version, for compatibility with legacy projects
 - Use **`ccf` (GLM-4.5-Air)** for: Quick questions, simple tasks, faster responses
 - Use **`cc` (Claude)** for: Your regular Anthropic Claude setup
 
@@ -649,7 +671,7 @@ Then reload: `. $PROFILE`
 **A**: Use the `/model` command with the format `<provider>:<model-name>`. For example:
 - `/model openai:gpt-4o`
 - `/model gemini:gemini-1.5-pro`
-- `/model glm:glm-4.6`
+- `/model glm:glm-4.7`
 
 ### Q: Is this secure?
 **A**: Yes! Your API keys are stored locally on your machine in wrapper scripts (bash or PowerShell, depending on your OS). Keep your scripts directory secure with appropriate permissions.
