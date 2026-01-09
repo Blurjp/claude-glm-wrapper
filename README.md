@@ -14,22 +14,39 @@ Switch freely between multiple AI providers: GLM, OpenAI, Gemini, OpenRouter, an
 
 ## Quick Start
 
-### Universal Installation (All Platforms)
+### Installation (Platform-Specific Scripts)
 
-**One command works everywhere - Windows, macOS, and Linux:**
-
+**macOS / Linux:**
 ```bash
-npx claude-glm-installer
+bash <(curl -fsSL https://raw.githubusercontent.com/JoeInnsp23/claude-glm-wrapper/main/install.sh)
+source ~/.zshrc  # or ~/.bashrc
 ```
 
-Then activate (platform-specific):
-```bash
-# macOS / Linux:
-source ~/.zshrc  # or ~/.bashrc
-
-# Windows PowerShell:
+**Windows (PowerShell):**
+```powershell
+iwr -useb https://raw.githubusercontent.com/JoeInnsp23/claude-glm-wrapper/main/install.ps1 | iex
 . $PROFILE
 ```
+
+<details>
+<summary>Alternative: Clone and install locally</summary>
+
+```bash
+# Clone the repository
+git clone https://github.com/JoeInnsp23/claude-glm-wrapper.git
+cd claude-glm-wrapper
+
+# Run the installer
+bash install.sh        # macOS / Linux
+# or
+.\install.ps1          # Windows PowerShell
+
+# Activate
+source ~/.zshrc         # macOS / Linux
+. $PROFILE             # Windows
+```
+
+</details>
 
 ### Start Using GLM Models
 
@@ -44,29 +61,6 @@ cc               # Regular Claude Code
 
 That's it! 🎉
 
----
-
-### Alternative: Platform-Specific Installers
-
-<details>
-<summary>Click to expand platform-specific installation methods</summary>
-
-#### macOS / Linux
-
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/JoeInnsp23/claude-glm-wrapper/main/install.sh)
-source ~/.zshrc  # or ~/.bashrc
-```
-
-#### Windows (PowerShell)
-
-```powershell
-iwr -useb https://raw.githubusercontent.com/JoeInnsp23/claude-glm-wrapper/main/install.ps1 | iex
-. $PROFILE
-```
-
-</details>
-
 ## Features
 
 - 🚀 **Easy switching** between GLM and Claude models
@@ -78,45 +72,16 @@ iwr -useb https://raw.githubusercontent.com/JoeInnsp23/claude-glm-wrapper/main/i
 
 ## Prerequisites
 
-1. **Node.js** (v14+): For npx installation - [nodejs.org](https://nodejs.org/)
-2. **Claude Code**: Install from [anthropic.com/claude-code](https://www.anthropic.com/claude-code)
-3. **Z.AI API Key**: Get your free key from [z.ai/manage-apikey/apikey-list](https://z.ai/manage-apikey/apikey-list)
-
-*Note: If you don't have Node.js, you can use the platform-specific installers (see Quick Start above)*
+1. **Claude Code**: Install from [anthropic.com/claude-code](https://www.anthropic.com/claude-code)
+2. **Z.AI API Key**: Get your free key from [z.ai/manage-apikey/apikey-list](https://z.ai/manage-apikey/apikey-list)
 
 ## Installation
 
-**IMPORTANT: Do NOT use `npm install` directly.** Use the installation script methods below instead.
+**IMPORTANT: Do NOT use `npm install` directly.** Use the installation scripts below instead.
 
-### Method 1: Installation Script (Recommended - All Platforms)
+### Platform-Specific Installation Scripts
 
-**One command for Windows, macOS, and Linux:**
-
-```bash
-npx claude-glm-installer
-```
-
-The installer will:
-- Auto-detect your operating system
-- Check if Claude Code is installed
-- Ask for your Z.AI API key
-- Create platform-appropriate wrapper scripts
-- Add convenient aliases to your shell/profile
-
-After installation, **activate the changes**:
-
-```bash
-# macOS / Linux:
-source ~/.zshrc  # or ~/.bashrc
-
-# Windows PowerShell:
-. $PROFILE
-```
-
-### Method 2: Platform-Specific Installers
-
-<details>
-<summary>macOS / Linux</summary>
+#### macOS / Linux
 
 **One-Line Install:**
 ```bash
@@ -132,10 +97,7 @@ bash install.sh
 source ~/.zshrc
 ```
 
-</details>
-
-<details>
-<summary>Windows (PowerShell)</summary>
+#### Windows (PowerShell)
 
 **One-Line Install:**
 ```powershell
@@ -151,12 +113,19 @@ cd claude-glm-wrapper
 . $PROFILE
 ```
 
-**Note:** If you get an execution policy error, run:
+**Note:** If you get an execution policy error on Windows, run:
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 ```
 
-</details>
+### What the Installer Does
+
+The installation script will:
+- Auto-detect your operating system
+- Check if Claude Code is installed
+- Ask for your Z.AI API key
+- Create platform-appropriate wrapper scripts
+- Add convenient aliases to your shell/profile
 
 ## Usage
 
