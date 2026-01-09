@@ -86,7 +86,9 @@ iwr -useb https://raw.githubusercontent.com/JoeInnsp23/claude-glm-wrapper/main/i
 
 ## Installation
 
-### Method 1: npx (Recommended - All Platforms)
+**IMPORTANT: Do NOT use `npm install` directly.** Use the installation script methods below instead.
+
+### Method 1: Installation Script (Recommended - All Platforms)
 
 **One command for Windows, macOS, and Linux:**
 
