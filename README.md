@@ -18,13 +18,13 @@ Switch freely between multiple AI providers: GLM, OpenAI, Gemini, OpenRouter, an
 
 **macOS / Linux:**
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/JoeInnsp23/claude-glm-wrapper/main/install.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/Blurjp/claude-glm-wrapper/main/install.sh)
 source ~/.zshrc  # or ~/.bashrc
 ```
 
 **Windows (PowerShell):**
 ```powershell
-iwr -useb https://raw.githubusercontent.com/JoeInnsp23/claude-glm-wrapper/main/install.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/Blurjp/claude-glm-wrapper/main/install.ps1 | iex
 . $PROFILE
 ```
 
@@ -33,7 +33,7 @@ iwr -useb https://raw.githubusercontent.com/JoeInnsp23/claude-glm-wrapper/main/i
 
 ```bash
 # Clone the repository
-git clone https://github.com/JoeInnsp23/claude-glm-wrapper.git
+git clone https://github.com/Blurjp/claude-glm-wrapper.git
 cd claude-glm-wrapper
 
 # Run the installer
@@ -85,13 +85,13 @@ That's it! 🎉
 
 **One-Line Install:**
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/JoeInnsp23/claude-glm-wrapper/main/install.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/Blurjp/claude-glm-wrapper/main/install.sh)
 source ~/.zshrc  # or ~/.bashrc
 ```
 
 **Clone and Install:**
 ```bash
-git clone https://github.com/JoeInnsp23/claude-glm-wrapper.git
+git clone https://github.com/Blurjp/claude-glm-wrapper.git
 cd claude-glm-wrapper
 bash install.sh
 source ~/.zshrc
@@ -101,13 +101,13 @@ source ~/.zshrc
 
 **One-Line Install:**
 ```powershell
-iwr -useb https://raw.githubusercontent.com/JoeInnsp23/claude-glm-wrapper/main/install.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/Blurjp/claude-glm-wrapper/main/install.ps1 | iex
 . $PROFILE
 ```
 
 **Clone and Install:**
 ```powershell
-git clone https://github.com/JoeInnsp23/claude-glm-wrapper.git
+git clone https://github.com/Blurjp/claude-glm-wrapper.git
 cd claude-glm-wrapper
 .\install.ps1
 . $PROFILE
@@ -660,7 +660,7 @@ Then reload: `. $PROFILE`
 
 Found a bug? Have an idea? Contributions are welcome!
 
-- 🐛 **Report issues**: [GitHub Issues](https://github.com/JoeInnsp23/claude-glm-wrapper/issues)
+- 🐛 **Report issues**: [GitHub Issues](https://github.com/Blurjp/claude-glm-wrapper/issues)
 - 🔧 **Submit PRs**: Fork, improve, and open a pull request
 - 💡 **Share feedback**: Tell us how you're using this tool!
 
