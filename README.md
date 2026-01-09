@@ -14,20 +14,17 @@ Switch freely between multiple AI providers: GLM, OpenAI, Gemini, OpenRouter, an
 
 ## Quick Start
 
-### Universal Installation (All Platforms)
+### Installation (All Platforms)
 
-**One command works everywhere - Windows, macOS, and Linux:**
-
+**macOS / Linux:**
 ```bash
-npx claude-glm-installer
+bash <(curl -fsSL https://raw.githubusercontent.com/Blurjp/claude-glm-wrapper/main/install.sh)
+source ~/.zshrc  # or ~/.bashrc
 ```
 
-Then activate (platform-specific):
-```bash
-# macOS / Linux:
-source ~/.zshrc  # or ~/.bashrc
-
-# Windows PowerShell:
+**Windows PowerShell:**
+```powershell
+iwr -useb https://raw.githubusercontent.com/Blurjp/claude-glm-wrapper/main/install.ps1 | iex
 . $PROFILE
 ```
 
@@ -44,29 +41,6 @@ cc               # Regular Claude Code
 
 That's it! 🎉
 
----
-
-### Alternative: Platform-Specific Installers
-
-<details>
-<summary>Click to expand platform-specific installation methods</summary>
-
-#### macOS / Linux
-
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/JoeInnsp23/claude-glm-wrapper/main/install.sh)
-source ~/.zshrc  # or ~/.bashrc
-```
-
-#### Windows (PowerShell)
-
-```powershell
-iwr -useb https://raw.githubusercontent.com/JoeInnsp23/claude-glm-wrapper/main/install.ps1 | iex
-. $PROFILE
-```
-
-</details>
-
 ## Features
 
 - 🚀 **Easy switching** between GLM and Claude models
@@ -78,72 +52,38 @@ iwr -useb https://raw.githubusercontent.com/JoeInnsp23/claude-glm-wrapper/main/i
 
 ## Prerequisites
 
-1. **Node.js** (v14+): For npx installation - [nodejs.org](https://nodejs.org/)
-2. **Claude Code**: Install from [anthropic.com/claude-code](https://www.anthropic.com/claude-code)
-3. **Z.AI API Key**: Get your free key from [z.ai/manage-apikey/apikey-list](https://z.ai/manage-apikey/apikey-list)
-
-*Note: If you don't have Node.js, you can use the platform-specific installers (see Quick Start above)*
+1. **Claude Code**: Install from [anthropic.com/claude-code](https://www.anthropic.com/claude-code)
+2. **Z.AI API Key**: Get your free key from [z.ai/manage-apikey/apikey-list](https://z.ai/manage-apikey/apikey-list)
 
 ## Installation
 
-### Method 1: npx (Recommended - All Platforms)
-
-**One command for Windows, macOS, and Linux:**
-
-```bash
-npx claude-glm-installer
-```
-
-The installer will:
-- Auto-detect your operating system
-- Check if Claude Code is installed
-- Ask for your Z.AI API key
-- Create platform-appropriate wrapper scripts
-- Add convenient aliases to your shell/profile
-
-After installation, **activate the changes**:
-
-```bash
-# macOS / Linux:
-source ~/.zshrc  # or ~/.bashrc
-
-# Windows PowerShell:
-. $PROFILE
-```
-
-### Method 2: Platform-Specific Installers
-
-<details>
-<summary>macOS / Linux</summary>
+### macOS / Linux
 
 **One-Line Install:**
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/JoeInnsp23/claude-glm-wrapper/main/install.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/Blurjp/claude-glm-wrapper/main/install.sh)
 source ~/.zshrc  # or ~/.bashrc
 ```
 
 **Clone and Install:**
 ```bash
-git clone https://github.com/JoeInnsp23/claude-glm-wrapper.git
+git clone https://github.com/Blurjp/claude-glm-wrapper.git
 cd claude-glm-wrapper
 bash install.sh
 source ~/.zshrc
 ```
 
-</details>
-
-<details>
-<summary>Windows (PowerShell)</summary>
+### Windows (PowerShell)
 
 **One-Line Install:**
 ```powershell
-iwr -useb https://raw.githubusercontent.com/JoeInnsp23/claude-glm-wrapper/main/install.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/Blurjp/claude-glm-wrapper/main/install.ps1 | iex
 . $PROFILE
 ```
 
 **Clone and Install:**
 ```powershell
-git clone https://github.com/JoeInnsp23/claude-glm-wrapper.git
+git clone https://github.com/Blurjp/claude-glm-wrapper.git
 cd claude-glm-wrapper
 .\install.ps1
 . $PROFILE
@@ -154,7 +94,11 @@ cd claude-glm-wrapper
 Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 ```
 
-</details>
+The installer will:
+- Check if Claude Code is installed
+- Ask for your Z.AI API key
+- Create platform-appropriate wrapper scripts
+- Add convenient aliases to your shell/profile
 
 ## Usage
 
