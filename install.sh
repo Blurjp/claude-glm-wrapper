@@ -43,6 +43,7 @@ fi
 # Configuration
 USER_BIN_DIR="$HOME/.local/bin"
 GLM_CONFIG_DIR="$HOME/.claude-glm"
+GLM_5_CONFIG_DIR="$HOME/.claude-glm-5"
 GLM_46_CONFIG_DIR="$HOME/.claude-glm-46"
 GLM_45_CONFIG_DIR="$HOME/.claude-glm-45"
 GLM_FAST_CONFIG_DIR="$HOME/.claude-glm-fast"
@@ -333,18 +334,18 @@ setup_user_bin() {
     fi
 }
 
-# Create the standard GLM-4.7 wrapper (latest)
+# Create the standard GLM-5 wrapper (latest)
 create_claude_glm_wrapper() {
     local wrapper_path="$USER_BIN_DIR/claude-glm"
 
     cat > "$wrapper_path" << EOF
 #!/bin/bash
-# Claude-GLM - Claude Code with Z.AI GLM-4.7 (Latest Model)
+# Claude-GLM - Claude Code with Z.AI GLM-5 (Latest Model)
 
 # Set Z.AI environment variables
 export ANTHROPIC_BASE_URL="https://api.z.ai/api/anthropic"
 export ANTHROPIC_AUTH_TOKEN="$ZAI_API_KEY"
-export ANTHROPIC_MODEL="glm-4.7"
+export ANTHROPIC_MODEL="glm-5"
 export ANTHROPIC_SMALL_FAST_MODEL="glm-4.5-air"
 
 # Use custom config directory to avoid conflicts
@@ -359,14 +360,14 @@ cat > "\$CLAUDE_HOME/settings.json" << SETTINGS
   "env": {
     "ANTHROPIC_BASE_URL": "https://api.z.ai/api/anthropic",
     "ANTHROPIC_AUTH_TOKEN": "$ZAI_API_KEY",
-    "ANTHROPIC_MODEL": "glm-4.7",
+    "ANTHROPIC_MODEL": "glm-5",
     "ANTHROPIC_SMALL_FAST_MODEL": "glm-4.5-air"
   }
 }
 SETTINGS
 
 # Launch Claude Code with custom config
-echo "🚀 Starting Claude Code with GLM-4.7 (Latest Model)..."
+echo "🚀 Starting Claude Code with GLM-5 (Latest Model)..."
 echo "📁 Config directory: \$CLAUDE_HOME"
 echo ""
 
@@ -383,6 +384,58 @@ EOF
 
     chmod +x "$wrapper_path"
     echo "✅ Installed claude-glm at $wrapper_path"
+}
+
+# Create the GLM-5 wrapper
+create_claude_glm_5_wrapper() {
+    local wrapper_path="$USER_BIN_DIR/claude-glm-5"
+
+    cat > "$wrapper_path" << EOF
+#!/bin/bash
+# Claude-GLM-5 - Claude Code with Z.AI GLM-5
+
+# Set Z.AI environment variables
+export ANTHROPIC_BASE_URL="https://api.z.ai/api/anthropic"
+export ANTHROPIC_AUTH_TOKEN="$ZAI_API_KEY"
+export ANTHROPIC_MODEL="glm-5"
+export ANTHROPIC_SMALL_FAST_MODEL="glm-4.5-air"
+
+# Use custom config directory to avoid conflicts
+export CLAUDE_HOME="\$HOME/.claude-glm-5"
+
+# Create config directory if it doesn't exist
+mkdir -p "\$CLAUDE_HOME"
+
+# Create/update settings file with GLM-5 configuration
+cat > "\$CLAUDE_HOME/settings.json" << SETTINGS
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://api.z.ai/api/anthropic",
+    "ANTHROPIC_AUTH_TOKEN": "$ZAI_API_KEY",
+    "ANTHROPIC_MODEL": "glm-5",
+    "ANTHROPIC_SMALL_FAST_MODEL": "glm-4.5-air"
+  }
+}
+SETTINGS
+
+# Launch Claude Code with custom config
+echo "🚀 Starting Claude Code with GLM-5..."
+echo "📁 Config directory: \$CLAUDE_HOME"
+echo ""
+
+# Check if claude exists
+if ! command -v claude &> /dev/null; then
+    echo "❌ Error: 'claude' command not found!"
+    echo "Please ensure Claude Code is installed and in your PATH"
+    exit 1
+fi
+
+# Run the actual claude command
+claude "\$@"
+EOF
+
+    chmod +x "$wrapper_path"
+    echo "✅ Installed claude-glm-5 at $wrapper_path"
 }
 
 # Create the GLM-4.6 wrapper
@@ -766,6 +819,7 @@ create_shell_aliases() {
 # Claude Code Model Switcher Aliases
 alias cc 'claude'
 alias ccg 'claude-glm'
+alias ccg5 'claude-glm-5'
 alias ccg46 'claude-glm-4.6'
 alias ccg45 'claude-glm-4.5'
 alias ccf 'claude-glm-fast'
@@ -776,6 +830,7 @@ EOF
 # Claude Code Model Switcher Aliases
 alias cc='claude'
 alias ccg='claude-glm'
+alias ccg5='claude-glm-5'
 alias ccg46='claude-glm-4.6'
 alias ccg45='claude-glm-4.5'
 alias ccf='claude-glm-fast'
@@ -844,6 +899,7 @@ main() {
                 if [ -n "$input_key" ]; then
                     ZAI_API_KEY="$input_key"
                     create_claude_glm_wrapper
+                    create_claude_glm_5_wrapper
                     create_claude_glm_46_wrapper
                     create_claude_glm_45_wrapper
                     create_claude_glm_fast_wrapper
@@ -871,6 +927,7 @@ main() {
     else
         echo "⚠️  No API key provided. Add it manually later to:"
         echo "   $USER_BIN_DIR/claude-glm"
+        echo "   $USER_BIN_DIR/claude-glm-5"
         echo "   $USER_BIN_DIR/claude-glm-4.6"
         echo "   $USER_BIN_DIR/claude-glm-4.5"
         echo "   $USER_BIN_DIR/claude-glm-fast"
@@ -878,6 +935,7 @@ main() {
 
     # Create wrappers
     create_claude_glm_wrapper
+    create_claude_glm_5_wrapper
     create_claude_glm_46_wrapper
     create_claude_glm_45_wrapper
     create_claude_glm_fast_wrapper
@@ -919,7 +977,8 @@ main() {
     echo "📝 After sourcing, you can use:"
     echo ""
     echo "Commands:"
-    echo "   claude-glm      - GLM-4.7 (latest)"
+    echo "   claude-glm      - GLM-5 (latest)"
+    echo "   claude-glm-5     - GLM-5 (explicit)"
     echo "   claude-glm-4.6  - GLM-4.6"
     echo "   claude-glm-4.5  - GLM-4.5"
     echo "   claude-glm-fast - GLM-4.5-Air (fast)"
@@ -929,7 +988,8 @@ main() {
     echo ""
     echo "Aliases:"
     echo "   cc    - claude (regular Claude)"
-    echo "   ccg   - claude-glm (GLM-4.7)"
+    echo "   ccg   - claude-glm (GLM-5)"
+    echo "   ccg5  - claude-glm-5 (GLM-5, explicit)"
     echo "   ccg46 - claude-glm-4.6 (GLM-4.6)"
     echo "   ccg45 - claude-glm-4.5 (GLM-4.5)"
     echo "   ccf   - claude-glm-fast"
@@ -948,7 +1008,7 @@ main() {
 
     echo ""
     echo "📁 Installation location: $USER_BIN_DIR"
-    echo "📁 Config directories: ~/.claude-glm, ~/.claude-glm-46, ~/.claude-glm-45, ~/.claude-glm-fast"
+    echo "📁 Config directories: ~/.claude-glm, ~/.claude-glm-5, ~/.claude-glm-46, ~/.claude-glm-45, ~/.claude-glm-fast"
 }
 
 # Error handler
